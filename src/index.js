@@ -1,24 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
   // your code here
-  const userName = document.getElementById("username")
-  const submit = document.getElementById("submit")
+  const task = document.getElementById("new-task-descrpition")
+  const form = document.querySelector("form")
+  const sort = document.querySelector("#sort")
+  const thing = document.createElement("div")
 
-  submit.addEventListener("click",(e) => {
-    e.preventDefault()
-    const inputs = document.getElementsByClassName("text-inputs")[0]
 
-  })
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const inputValue = e.target.task.value
+  }
 });
 
-const form = document.getElementsByTagName("form")[0]
-form.addEventListener("submit",(e) => {
-  e.preventDefault()
-  const userName = e.target.querySelector("userName")
-  e.target.querySelector("username")
-  if(userName.value === ""){
-    const li = document.createElement("li")
-    li.textContent = "you cannot leave that blank"
-    document.getElementsByClassName("validations")[0].append(li)
-  }
-
+sort.addEventListener("click", function(){
+  taskItems = Array.from(task.children)
+  taskItems.sort()
+  let newlist = taskItems.sort()
+  taskItems.forEach(item=>remove())
 })
+
+
+function addElement(element){
+  let p =document.createElement("li")
+  p.textContent = ` ${element} `
+  let button = document.createElement("button")
+  button.textContent = "x"
+  button.addEventListener("click",e=>deleteButton(e))
+  p.appendChild(button)
+  task.appendChild(p)
+}
+
+function deleteButton(event){
+  event.target.parentNode.remove()
+}
